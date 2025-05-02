@@ -1400,7 +1400,7 @@ namespace serialize
 
     template <typename Stream> bool serialize_float_internal( Stream & stream, float & value )
     {
-        uint32_t int_value;
+        uint32_t int_value = 0;
         if ( Stream::IsWriting )
         {
             memcpy( (char*) &int_value, &value, 4 );
