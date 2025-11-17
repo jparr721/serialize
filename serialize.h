@@ -453,7 +453,7 @@ namespace serialize
         void WriteBytes( const uint8_t * serialize_restrict data, int bytes )
         {
             serialize_assert( GetAlignBits() == 0 );
-            serialize_assert( m_bitsWritten + uint64_t(bytes) * 8 <= m_numBits );
+            serialize_assert( uint64_t(m_bitsWritten) + uint64_t(bytes) * 8 <= uint64_t(m_numBits) );
             serialize_assert( ( m_bitsWritten % 32 ) == 0 || ( m_bitsWritten % 32 ) == 8 || ( m_bitsWritten % 32 ) == 16 || ( m_bitsWritten % 32 ) == 24 );
 
             int headBytes = ( 4 - ( m_bitsWritten % 32 ) / 8 ) % 4;
@@ -715,7 +715,7 @@ namespace serialize
         void ReadBytes( uint8_t * serialize_restrict data, int bytes )
         {
             serialize_assert( GetAlignBits() == 0 );
-            serialize_assert( m_bitsRead + uint64_t(bytes) * 8 <= m_numBits );
+            serialize_assert( uint64_t(m_bitsRead) + uint64_t(bytes) * 8 <= uint64_t(m_numBits) );
             serialize_assert( ( m_bitsRead % 32 ) == 0 || ( m_bitsRead % 32 ) == 8 || ( m_bitsRead % 32 ) == 16 || ( m_bitsRead % 32 ) == 24 );
 
             int headBytes = ( 4 - ( m_bitsRead % 32 ) / 8 ) % 4;
